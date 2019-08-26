@@ -5,6 +5,24 @@
 from equity import *
 
 
+def file_reader(file_path):
+    with open(file_path, 'r') as read_file:
+        return_file = read_file.read()
+        read_file.close()
+        return return_file
+
+
+def strip(_strip):
+    return _strip.strip()[1:-1]
+
+
+def file_writer(file_path, body):
+    with open(file_path, 'w') as write_file:
+        write_file.write(body)
+        write_file.close()
+        return
+
+
 def post_body(body):
     return json.dumps(body)
 
@@ -34,7 +52,7 @@ class Model(object):
     def __unicode__(self):
         return "APIModel"
 
-    
+
 class RPC(object):
 
     def __init__(self, api):
