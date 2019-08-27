@@ -1,0 +1,6 @@
+contract LockWithPublicKey(publicKey: PublicKey) locks valueAmount of valueAsset {
+  clause spend(sig: Signature) {
+    verify checkTxSig(publicKey, sig)
+    unlock valueAmount of valueAsset
+  }
+}
