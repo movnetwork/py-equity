@@ -9,10 +9,10 @@ with open("requirements.txt", "r") as _requirements:
 setup(
     name="py-equity",
     version='0.1.0',
-    description='The implementation of Hierarchical Deterministic (HD) wallets generator for Bytom blockchain',
+    description='Python wrapper around the eqt Equity compiler.',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    license='MIT',
+    license='AGPLv3+',
     author='Meheret Tesfaye',
     author_email='meherett@zoho.com',
     url='https://github.com/mehetett/py-equity',
@@ -21,7 +21,7 @@ setup(
     install_requires=requirements,
     classifiers=[
         "Development Status :: 3 - Alpha",
-        "License :: OSI Approved :: MIT License",
+        "License :: OSI Approved :: GNU Affero General Public License v3 or later (AGPLv3+)",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7"
