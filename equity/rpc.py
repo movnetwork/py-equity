@@ -2,24 +2,23 @@
 # coding=utf-8
 
 # IMPORT ALL PACKAGES
-from equity import *
+import requests
 from equity.utils import post_body
 
-
-API_NAME = "Bytom"
-VERSION = "1.0.9"
+# DEFAULT BYTOM API AND VERSION
+DEFAULT_API_NAME = "Bytom"
+DEFAULT_VERSION = "1.0.9"
 
 
 class RPC(object):
 
-    def __init__(self, url, equity_source, auth=None, api_name=None, version=None):
+    def __init__(self, url, auth=None, api_name=None, version=None):
         self.url = str(url)
-        self.equity_source = str(equity_source)
         self.auth = tuple() if auth is None else tuple(auth)
-        self.api_name = API_NAME if not api_name else api_name
-        self.version = VERSION if not version else version
+        self.api_name = DEFAULT_API_NAME if not api_name else api_name
+        self.version = DEFAULT_VERSION if not version else version
 
-    def compile_url(self, path):
+    def compile_url(self):
         if self.url.endswith("/"):
             return "%s%s" % (self.url, "compile")
         else:
