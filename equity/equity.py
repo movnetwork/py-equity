@@ -13,9 +13,9 @@ __VERSION__ = "0.1.0"
 __AUTHOR__ = "Meheret Tesfaye"
 __LICENSE__ = "AGPLv3+"
 
-# Default bytom url
+# Default bytom url and timeout
 DEFAULT_URL = "http://localhost:9888"
-TIMEOUT = 1
+DEFAULT_TIMEOUT = 1
 
 
 class Equity(object):
@@ -29,7 +29,7 @@ class Equity(object):
         if timeout and isinstance(timeout, int):
             self.timeout = int(timeout)
         else:
-            self.timeout = TIMEOUT
+            self.timeout = DEFAULT_TIMEOUT
         self._response = dict()
         self._check_url(self.url)
 
@@ -69,7 +69,7 @@ class Equity(object):
         _requests = dict(contract=equity_source, args=_args)
         rpc = RPC(self.url, self.api_key)
         compile_url = rpc.compile_url()
-        _response = rpc.post(compile_url, _requests)
+        _response = rpc.post(compile_url, _requests, timeout=self.timeout)
         self._response = _response.json()
         if "status" in self._response and self._response["status"] == "fail":
             raise APIError(self._response["msg"], self._response["error_detail"])
@@ -95,7 +95,7 @@ class Equity(object):
         _requests = dict(contract=equity_source, args=_args)
         rpc = RPC(self.url, self.api_key)
         compile_url = rpc.compile_url()
-        _response = rpc.post(compile_url, _requests)
+        _response = rpc.post(compile_url, _requests, timeout=self.timeout)
         self._response = _response.json()
         if "status" in self._response and self._response["status"] == "fail":
             raise APIError(self._response["msg"], self._response["error_detail"])
