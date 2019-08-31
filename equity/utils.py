@@ -3,6 +3,7 @@
 
 # IMPORT ALL PACKAGES
 import json
+from equity.exceptions import NotFoundError
 
 
 def get_instance_name(data):
@@ -18,10 +19,13 @@ def get_instance_name(data):
 
 
 def file_reader(file_path):
-    with open(file_path, 'r') as read_file:
-        return_file = read_file.read()
-        read_file.close()
-    return return_file
+    try:
+        with open(file_path, 'r') as read_file:
+            return_file = read_file.read()
+            read_file.close()
+        return return_file
+    except FileNotFoundError:
+        raise NotFoundError("Wrong file path, Please check your file path!")
 
 
 def strip(_strip):
@@ -33,7 +37,10 @@ def post_body(body):
 
 
 def file_writer(file_path, body):
-    with open(file_path, 'w') as write_file:
-        write_file.write(body)
-        write_file.close()
-    return
+    try:
+        with open(file_path, 'w') as write_file:
+            write_file.write(body)
+            write_file.close()
+        return
+    except FileNotFoundError:
+        raise NotFoundError("Wrong file path, Please check your file path!")
