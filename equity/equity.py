@@ -72,7 +72,12 @@ class Equity(object):
         _response = rpc.post(compile_url, _requests, timeout=self.timeout)
         self._response = _response.json()
         if "status" in self._response and self._response["status"] == "fail":
-            raise APIError(self._response["msg"], self._response["error_detail"])
+            if self._response["msg"] and self._response["detail"]:
+                raise APIError(self._response["msg"], self._response["detail"])
+            elif self._response["msg"] and self._response["error_detail"]:
+                raise APIError(self._response["msg"], self._response["error_detail"])
+            else:
+                raise APIError("something is wrong", "please check your source!")
         elif "status" in self._response and self._response["status"] == "success":
             return self._response["data"]
         else:
@@ -98,11 +103,15 @@ class Equity(object):
         _response = rpc.post(compile_url, _requests, timeout=self.timeout)
         self._response = _response.json()
         if "status" in self._response and self._response["status"] == "fail":
-            raise APIError(self._response["msg"], self._response["error_detail"])
+            if self._response["msg"] and self._response["detail"]:
+                raise APIError(self._response["msg"], self._response["detail"])
+            elif self._response["msg"] and self._response["error_detail"]:
+                raise APIError(self._response["msg"], self._response["error_detail"])
+            else:
+                raise APIError("something is wrong", "please check your source!")
         elif "status" in self._response and self._response["status"] == "success":
             return self._response["data"]
         else:
-            print(self._response)
             raise APIError("something is wrong", "please check your connection")
 
     def save(self, file_path):
