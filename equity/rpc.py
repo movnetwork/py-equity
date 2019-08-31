@@ -32,11 +32,11 @@ class RPC(object):
             headers.update({"Content-Type": "application/x-www-form-urlencoded; charset=utf-8"})
         return headers
 
-    def post(self, url, body=None, headers=None):
+    def post(self, url, body=None, headers=None, timeout=1):
         body = post_body(body)
         headers = self.check_header(headers)
-        return requests.post(url, data=body, headers=headers, auth=self.auth)
+        return requests.post(url, data=body, headers=headers, auth=self.auth, timeout=timeout)
 
-    def get(self, url, headers=None):
+    def get(self, url, headers=None, timeout=1):
         headers = self.check_header(headers)
-        return requests.get(url, headers=headers, auth=self.auth)
+        return requests.get(url, headers=headers, auth=self.auth, timeout=timeout)
