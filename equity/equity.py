@@ -3,7 +3,7 @@
 
 # IMPORT ALL PACKAGES
 from equity.utils import file_reader, file_writer, get_instance_name
-from equity.exceptions import ConnectionError, Timeout, InvalidURL, ValueError
+from equity.exceptions import ConnectionError, Timeout, InvalidURL, ValueError, APIError
 from equity.rpc import RPC
 import requests
 
@@ -70,8 +70,14 @@ class Equity(object):
         rpc = RPC(self.url, self.api_key)
         compile_url = rpc.compile_url()
         _response = rpc.post(compile_url, _requests)
-        self._response = _response
-        return self._response
+        self._response = _response.json()
+        if "status" in self._response and self._response["status"] == "fail":
+            raise APIError(self._response["msg"], self._response["error_detail"])
+        elif "status" in self._response and self._response["status"] == "success":
+            return self._response["data"]
+        else:
+            print(self._response)
+            raise APIError("something is wrong", "please check your connection")
 
     def compile_source(self, equity_source, args=None):
         if args is not None:
@@ -90,8 +96,14 @@ class Equity(object):
         rpc = RPC(self.url, self.api_key)
         compile_url = rpc.compile_url()
         _response = rpc.post(compile_url, _requests)
-        self._response = _response
-        return self._response
+        self._response = _response.json()
+        if "status" in self._response and self._response["status"] == "fail":
+            raise APIError(self._response["msg"], self._response["error_detail"])
+        elif "status" in self._response and self._response["status"] == "success":
+            return self._response["data"]
+        else:
+            print(self._response)
+            raise APIError("something is wrong", "please check your connection")
 
     def save(self, file_path):
         return file_writer(file_path, self._response)
