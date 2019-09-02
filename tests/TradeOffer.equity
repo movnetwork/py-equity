@@ -1,0 +1,13 @@
+contract TradeOffer(assetRequested: Asset,
+                  amountRequested: Amount,
+                  seller: Program,
+                  cancelKey: PublicKey) locks offered {
+  clause trade() requires payment: amountRequested of assetRequested {
+    lock payment with seller
+    unlock offered
+  }
+  clause cancel(sellerSig: Signature) {
+    verify checkTxSig(cancelKey, sellerSig)
+    unlock offered
+  }
+}
