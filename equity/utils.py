@@ -21,25 +21,29 @@ def get_instance_name(data):
 def args(argv):
     _args = []
     if argv:
-        _argvs = list(argv)
-        for _argv in _argvs:
-            if isinstance(_argv, list):
-                for arg in _argv:
-                    instance_name = get_instance_name(arg)
-                    if instance_name == "boolean" and arg:
+        if isinstance(argv, list):
+            for _argv in argv:
+                _args.append(_argv)
+        else:
+            _argvs = list(argv)
+            for _argv in _argvs:
+                if isinstance(_argv, list):
+                    for arg in _argv:
+                        instance_name = get_instance_name(arg)
+                        if instance_name == "boolean" and arg:
+                            _args.append({instance_name: "true"})
+                        elif instance_name == "boolean" and not arg:
+                            _args.append({instance_name: "false"})
+                        else:
+                            _args.append({instance_name: arg})
+                else:
+                    instance_name = get_instance_name(_argv)
+                    if instance_name == "boolean" and _argv:
                         _args.append({instance_name: "true"})
-                    elif instance_name == "boolean" and not arg:
+                    elif instance_name == "boolean" and not _argv:
                         _args.append({instance_name: "false"})
                     else:
-                        _args.append({instance_name: arg})
-            else:
-                instance_name = get_instance_name(_argv)
-                if instance_name == "boolean" and _argv:
-                    _args.append({instance_name: "true"})
-                elif instance_name == "boolean" and not _argv:
-                    _args.append({instance_name: "false"})
-                else:
-                    _args.append({instance_name: _argv})
+                        _args.append({instance_name: _argv})
     return _args
 
 
