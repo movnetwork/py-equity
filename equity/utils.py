@@ -54,7 +54,12 @@ def file_reader(file_path):
 
 
 def str2bool(v):
-    return v.lower() in ("yes", "true", "True", "1")
+    if v.lower() in ("yes", "true", "True", "1"):
+        return True
+    elif v.lower() in ("no", "false", "False", "0"):
+        return False
+    else:
+        return None
 
 
 def strip(_strip):
