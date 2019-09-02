@@ -3,7 +3,6 @@
 
 # IMPORT ALL PACKAGES
 from equity import Equity
-import sys
 
 
 def _compile(url, equity_source, name, args=None, save=None):
@@ -19,8 +18,5 @@ def _compile(url, equity_source, name, args=None, save=None):
     else:
         _, save_name = equity.save()
 
-    print("Compiling is Done! Save: %s" % save_name)
-
-
-sys.exit()
+    print("Compiling is Done! %s" % save_name)
 
