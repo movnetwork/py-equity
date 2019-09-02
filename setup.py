@@ -16,6 +16,10 @@ setup(
     author="Meheret Tesfaye",
     author_email="meherett@zoho.com",
     url="https://github.com/meherett/py-equity",
+    keywords=['eqt'],
+    entry_points={
+        'console_scripts': ["eqt=equity.cli.__main__:main"]
+    },
     packages=find_packages(),
     python_requires=">=2.7,<4",
     install_requires=requirements,
