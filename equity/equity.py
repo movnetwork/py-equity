@@ -59,7 +59,7 @@ class Equity(object):
             return False
 
     def compile_file(self, file_path, *argv):
-        if not os.path.isfile(file_path) or isinstance(file_path, str):
+        if not os.path.isfile(file_path) or not isinstance(file_path, str):
             raise NotFoundError("No such file: %s!" % file_path)
         if str(file_path).endswith(".equity"):
             self.save_name = os.path.basename(file_path)[:-7] + ".json"
@@ -75,9 +75,9 @@ class Equity(object):
         _response = rpc.post(compile_url, _requests, timeout=self.timeout)
         self._response = _response.json()
         if "status" in self._response and self._response["status"] == "fail":
-            if self._response["msg"] and self._response["detail"]:
+            if self._response["msg"] and "detail" in self._response:
                 raise APIError(self._response["msg"], self._response["detail"])
-            elif self._response["msg"] and self._response["error_detail"]:
+            elif self._response["msg"] and "error_detail" in self._response:
                 raise APIError(self._response["msg"], self._response["error_detail"])
             else:
                 raise APIError("something is wrong", "please check your source!")
@@ -98,9 +98,9 @@ class Equity(object):
         _response = rpc.post(compile_url, _requests, timeout=self.timeout)
         self._response = _response.json()
         if "status" in self._response and self._response["status"] == "fail":
-            if self._response["msg"] and self._response["detail"]:
+            if self._response["msg"] and "detail" in self._response:
                 raise APIError(self._response["msg"], self._response["detail"])
-            elif self._response["msg"] and self._response["error_detail"]:
+            elif self._response["msg"] and "error_detail" in self._response:
                 raise APIError(self._response["msg"], self._response["error_detail"])
             else:
                 raise APIError("something is wrong", "please check your source!")
