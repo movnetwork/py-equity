@@ -113,12 +113,12 @@ class Equity(object):
     def save(self, file_path=None, dir_path=None):
         _compiled_ = json.dumps(self._response["data"], indent=4)
         if file_path:
-            return file_writer(file_path, str(_compiled_))
+            return file_writer(file_path, str(_compiled_)), self.save_name
         elif dir_path:
             if os.path.isdir(dir_path):
-                return file_writer(os.path.join(dir_path, self.save_name), str(_compiled_))
+                return file_writer(os.path.join(dir_path, self.save_name), str(_compiled_)), self.save_name
             else:
                 raise NotFoundError("Not found this directory: %s" % dir_path)
         else:
-            return file_writer(self.save_name, str(_compiled_))
+            return file_writer(self.save_name, str(_compiled_)), self.save_name
 
