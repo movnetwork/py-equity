@@ -3,9 +3,12 @@
 
 # IMPORT ALL PACKAGES
 from equity.utils import file_reader, file_writer, get_instance_name, args
-from equity.exceptions import ConnectionError, Timeout, InvalidURL, ValueError, APIError
+from equity.exceptions import ConnectionError, Timeout, InvalidURL, ValueError, APIError, NotFoundError
 from equity.rpc import RPC
+
 import requests
+import os
+import json
 
 # Info
 __NAME__ = "PY-Equity"
@@ -31,6 +34,7 @@ class Equity(object):
         else:
             self.timeout = DEFAULT_TIMEOUT
         self._response = dict()
+        self.save_name = str()
         self._check_url(self.url)
 
     def _check_url(self, url):
@@ -55,6 +59,14 @@ class Equity(object):
             return False
 
     def compile_file(self, file_path, *argv):
+        if not os.path.isfile(file_path) or isinstance(file_path, str):
+            raise NotFoundError("No such file: %s!" % file_path)
+        if str(file_path).endswith(".equity"):
+            self.save_name = os.path.basename(file_path)[:-7] + ".json"
+        elif str(file_path).endswith(".eqt"):
+            self.save_name = os.path.basename(file_path)[:-4] + ".json"
+        else:
+            self.save_name = os.path.basename(file_path) + ".json"
         equity_source = file_reader(file_path=file_path)
         _args = args(argv)
         _requests = dict(contract=equity_source, args=_args)
@@ -70,6 +82,7 @@ class Equity(object):
             else:
                 raise APIError("something is wrong", "please check your source!")
         elif "status" in self._response and self._response["status"] == "success":
+            self.save_name = self._response["data"]["name"] + ".json"
             return self._response["data"]
         else:
             print(self._response)
@@ -92,10 +105,20 @@ class Equity(object):
             else:
                 raise APIError("something is wrong", "please check your source!")
         elif "status" in self._response and self._response["status"] == "success":
+            self.save_name = self._response["data"]["name"] + ".json"
             return self._response["data"]
         else:
             raise APIError("something is wrong", "please check your connection")
 
-    def save(self, file_path):
-        return file_writer(file_path, self._response)
+    def save(self, file_path=None, dir_path=None):
+        _compiled_ = json.dumps(self._response["data"], indent=4)
+        if file_path:
+            return file_writer(file_path, str(_compiled_))
+        elif dir_path:
+            if os.path.isdir(dir_path):
+                return file_writer(os.path.join(dir_path, self.save_name), str(_compiled_))
+            else:
+                raise NotFoundError("Not found this directory: %s" % dir_path)
+        else:
+            return file_writer(self.save_name, str(_compiled_))
 
