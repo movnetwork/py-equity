@@ -2,7 +2,7 @@
 # coding=utf-8
 
 # IMPORT ALL PACKAGES
-from equity.utils import file_reader, file_writer, get_instance_name
+from equity.utils import file_reader, file_writer, get_instance_name, args
 from equity.exceptions import ConnectionError, Timeout, InvalidURL, ValueError, APIError
 from equity.rpc import RPC
 import requests
@@ -54,18 +54,9 @@ class Equity(object):
         except Exception:
             return False
 
-    def compile_file(self, file_path, args=None):
-        if args is not None:
-            if not isinstance(args, list):
-                raise ValueError("Invalid instance of args! please use list instance.")
-            else:
-                _args = list()
-                for arg in args:
-                    instance_name = get_instance_name(arg)
-                    _args.append({instance_name: arg})
-        else:
-            _args = list()
+    def compile_file(self, file_path, *argv):
         equity_source = file_reader(file_path=file_path)
+        _args = args(argv)
         _requests = dict(contract=equity_source, args=_args)
         rpc = RPC(self.url, self.api_key)
         compile_url = rpc.compile_url()
@@ -84,17 +75,8 @@ class Equity(object):
             print(self._response)
             raise APIError("something is wrong", "please check your connection")
 
-    def compile_source(self, equity_source, args=None):
-        if args is not None:
-            if not isinstance(args, list):
-                raise ValueError("Invalid instance of args! please use list instance.")
-            else:
-                _args = list()
-                for arg in args:
-                    instance_name = get_instance_name(arg)
-                    _args.append({instance_name: arg})
-        else:
-            _args = list()
+    def compile_source(self, equity_source, *argv):
+        _args = args(argv)
         if not isinstance(equity_source, str):
             raise ValueError("Invalid instance of equity_source! please use only string(str) instance.")
         _requests = dict(contract=equity_source, args=_args)
