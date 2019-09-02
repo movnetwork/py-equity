@@ -53,6 +53,10 @@ def file_reader(file_path):
         raise NotFoundError("Wrong file path, Please check your file path!")
 
 
+def str2bool(v):
+    return v.lower() in ("yes", "true", "True", "1")
+
+
 def strip(_strip):
     return _strip.strip()[1:-1]
 
