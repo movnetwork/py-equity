@@ -1,5 +1,12 @@
 # PY-EQUITY
 
+[![Build Status](https://travis-ci.org/meherett/py-equity.svg?branch=master)](https://travis-ci.org/meherett/py-equity)
+![PyPI License](https://img.shields.io/pypi/l/py-equity.svg?color=black)
+![PyPI Version](https://img.shields.io/pypi/v/py-equity.svg?color=blue)
+[![Coverage Status](https://coveralls.io/repos/github/meherett/py-equity/badge.svg?branch=master)](https://coveralls.io/github/meherett/py-equity?branch=master)
+
+*Python wrapper around the Bytom smart contract (Equity language compiler).*
+
 ## Installation
 ```shell script
 $ pip install py-equity
@@ -41,18 +48,39 @@ print(COMPILED["opcodes"])
 
 print(COMPILED)
 
+# Save compiled contract
 equity.save()
 ```
 
 `OUTPUT`
 
 ```json
-"LockWithPublicKey"
-"20e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e787403ae7cac00c0"
-"0xe9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78" DEPTH 0xae7cac FALSE CHECKPREDICATE 
+'LockWithPublicKey'
+'20e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e787403ae7cac00c0'
+'0xe9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78 DEPTH 0xae7cac FALSE CHECKPREDICATE'
 
 {'name': 'LockWithPublicKey', 'source': '\n    contract LockWithPublicKey(publicKey: PublicKey) locks valueAmount of valueAsset {\n      clause spend(sig: Signature) {\n        verify checkTxSig(publicKey, sig)\n        unlock valueAmount of valueAsset\n      }\n    }\n', 'program': '20e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e787403ae7cac00c0', 'params': [{'name': 'publicKey', 'type': 'PublicKey'}], 'value': 'valueAmount of valueAsset', 'clause_info': [{'name': 'spend', 'params': [{'name': 'sig', 'type': 'Signature'}], 'values': [{'name': '', 'asset': 'valueAsset', 'amount': 'valueAmount'}]}], 'opcodes': '0xe9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78 DEPTH 0xae7cac FALSE CHECKPREDICATE', 'error': ''}
 ```
+
+## CLI
+
+Command line interface, run the following command:
+
+```shell script
+$ eqt --version
+```
+
+Example `eqt`:
+```shell script
+$ eqt --file LockWithPublicKey.equity --args "e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78"
+```
+
+Get help:
+```shell script
+$ eqt --help
+```
+
+From there, you can run eqt more commands, `-s\--save` to save your contract, `-u\--url` to change Bytom API url. by default (http://localhost:9888).
 
 ## API
 
@@ -166,8 +194,21 @@ print(COMPILED)
 
 ----
 
+**`save()`**: Save compiled equity source.
+
+**Parameters**
+
+`Optional`:
+- `String` - *file_path*, It is for full path with name.
+- `String` - *dir_path*, It is for only dir path.
+
+**Returns**
+
+`Object`:
+- `String` - *name*, contract name.
+
 ## AUTHOR
- MEHERET TESFAYE
+ [MEHERET TESFAYE](https://github.com/meherett)
 
 ## LICENSE
- AGPLv3+
+ [AGPLv3+](LICENSE)
