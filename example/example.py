@@ -22,7 +22,7 @@ COMPILED = equity.compile_source(LOCK_WITH_PUBLIC_KEY_SOURCE,
 
 print(COMPILED["name"])
 print(COMPILED["program"])
-print(COMPILED["opcodes"])
+print(COMPILED["opcodes"], "\n")
 
 print(COMPILED)
 
