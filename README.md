@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/meherett/py-equity.svg?branch=master)](https://travis-ci.org/meherett/py-equity)
 ![PyPI License](https://img.shields.io/pypi/l/py-equity.svg?color=black)
 ![PyPI Version](https://img.shields.io/pypi/v/py-equity.svg?color=blue)
-[![Coverage Status](https://coveralls.io/repos/github/meherett/py-equity/badge.svg?branch=master)](https://coveralls.io/github/meherett/py-equity?branch=master)
 
 *Python wrapper around the BUTXO Equity compiler for Bytom protocol.*
 
@@ -55,7 +54,7 @@ equity.save()
 `OUTPUT`
 
 ```json
-"LockWithPublicKey
+"LockWithPublicKey"
 "20e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e787403ae7cac00c0"
 "0xe9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78 DEPTH 0xae7cac FALSE CHECKPREDICATE"
 
