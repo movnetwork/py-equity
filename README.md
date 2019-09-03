@@ -55,11 +55,11 @@ equity.save()
 `OUTPUT`
 
 ```json
-'LockWithPublicKey'
-'20e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e787403ae7cac00c0'
-'0xe9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78 DEPTH 0xae7cac FALSE CHECKPREDICATE'
+"LockWithPublicKey
+"20e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e787403ae7cac00c0"
+"0xe9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78 DEPTH 0xae7cac FALSE CHECKPREDICATE"
 
-{'name': 'LockWithPublicKey', 'source': '\n    contract LockWithPublicKey(publicKey: PublicKey) locks valueAmount of valueAsset {\n      clause spend(sig: Signature) {\n        verify checkTxSig(publicKey, sig)\n        unlock valueAmount of valueAsset\n      }\n    }\n', 'program': '20e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e787403ae7cac00c0', 'params': [{'name': 'publicKey', 'type': 'PublicKey'}], 'value': 'valueAmount of valueAsset', 'clause_info': [{'name': 'spend', 'params': [{'name': 'sig', 'type': 'Signature'}], 'values': [{'name': '', 'asset': 'valueAsset', 'amount': 'valueAmount'}]}], 'opcodes': '0xe9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78 DEPTH 0xae7cac FALSE CHECKPREDICATE', 'error': ''}
+{"name": "LockWithPublicKey", "source": "\\n    contract LockWithPublicKey(publicKey: PublicKey) locks valueAmount of valueAsset {\\n      clause spend(sig: Signature) {\\n        verify checkTxSig(publicKey, sig)\\n        unlock valueAmount of valueAsset\\n      }\\n    }\\n", "program": "20e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e787403ae7cac00c0", "params": [{"name": "publicKey", "type": "PublicKey"}], "value": "valueAmount of valueAsset", "clause_info": [{"name": "spend", "params": [{"name": "sig", "type": "Signature"}], "values": [{"name": "", "asset": "valueAsset", "amount": "valueAmount"}]}], "opcodes": "0xe9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78 DEPTH 0xae7cac FALSE CHECKPREDICATE", "error": ""}
 ```
 
 ## CLI
@@ -153,7 +153,7 @@ print(COMPILED)
 <summary>Output</summary>
 
 ```json5
-{'name': 'LockWithPublicKey', 'source': '\n    contract LockWithPublicKey(publicKey: PublicKey) locks valueAmount of valueAsset {\n      clause spend(sig: Signature) {\n        verify checkTxSig(publicKey, sig)\n        unlock valueAmount of valueAsset\n      }\n    }\n', 'program': '20e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e787403ae7cac00c0', 'params': [{'name': 'publicKey', 'type': 'PublicKey'}], 'value': 'valueAmount of valueAsset', 'clause_info': [{'name': 'spend', 'params': [{'name': 'sig', 'type': 'Signature'}], 'values': [{'name': '', 'asset': 'valueAsset', 'amount': 'valueAmount'}]}], 'opcodes': '0xe9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78 DEPTH 0xae7cac FALSE CHECKPREDICATE', 'error': ''}
+{"name": "LockWithPublicKey", "source": "\\n    contract LockWithPublicKey(publicKey: PublicKey) locks valueAmount of valueAsset {\\n      clause spend(sig: Signature) {\\n        verify checkTxSig(publicKey, sig)\\n        unlock valueAmount of valueAsset\\n      }\\n    }\\n", "program": "20e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e787403ae7cac00c0", "params": [{"name": "publicKey", "type": "PublicKey"}], "value": "valueAmount of valueAsset", "clause_info": [{"name": "spend", "params": [{"name": "sig", "type": "Signature"}], "values": [{"name": "", "asset": "valueAsset", "amount": "valueAmount"}]}], "opcodes": "0xe9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78 DEPTH 0xae7cac FALSE CHECKPREDICATE", "error": ""}
 ```
 </details>
 
@@ -199,7 +199,7 @@ print(COMPILED)
 <summary>Output</summary>
 
 ```json5
-{'name': 'LockWithPublicKey', 'source': '\n    contract LockWithPublicKey(publicKey: PublicKey) locks valueAmount of valueAsset {\n      clause spend(sig: Signature) {\n        verify checkTxSig(publicKey, sig)\n        unlock valueAmount of valueAsset\n      }\n    }\n', 'program': '20e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e787403ae7cac00c0', 'params': [{'name': 'publicKey', 'type': 'PublicKey'}], 'value': 'valueAmount of valueAsset', 'clause_info': [{'name': 'spend', 'params': [{'name': 'sig', 'type': 'Signature'}], 'values': [{'name': '', 'asset': 'valueAsset', 'amount': 'valueAmount'}]}], 'opcodes': '0xe9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78 DEPTH 0xae7cac FALSE CHECKPREDICATE', 'error': ''}
+{"name": "LockWithPublicKey", "source": "\\n    contract LockWithPublicKey(publicKey: PublicKey) locks valueAmount of valueAsset {\\n      clause spend(sig: Signature) {\\n        verify checkTxSig(publicKey, sig)\\n        unlock valueAmount of valueAsset\\n      }\\n    }\\n", "program": "20e9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e787403ae7cac00c0", "params": [{"name": "publicKey", "type": "PublicKey"}], "value": "valueAmount of valueAsset", "clause_info": [{"name": "spend", "params": [{"name": "sig", "type": "Signature"}], "values": [{"name": "", "asset": "valueAsset", "amount": "valueAmount"}]}], "opcodes": "0xe9108d3ca8049800727f6a3505b3a2710dc579405dde03c250f16d9a7e1e6e78 DEPTH 0xae7cac FALSE CHECKPREDICATE", "error": ""}
 ```
 </details>
 
