@@ -5,7 +5,7 @@
 ![PyPI Version](https://img.shields.io/pypi/v/py-equity.svg?color=blue)
 [![Coverage Status](https://coveralls.io/repos/github/meherett/py-equity/badge.svg?branch=master)](https://coveralls.io/github/meherett/py-equity?branch=master)
 
-*Python wrapper around the Bytom smart contract (Equity language compiler).*
+*Python wrapper around the BUTXO Equity compiler for Bytom protocol.*
 
 ## Installation
 ```shell script
@@ -81,6 +81,17 @@ $ eqt --help
 ```
 
 From there, you can run eqt more commands, `-s\--save` to save your contract, `-u\--url` to change Bytom API url. by default (http://localhost:9888).
+
+## Testing
+
+You can run the tests with:
+
+```
+$ pytest tests
+```
+
+Or use `tox` to run the complete suite against the full set of build targets, or pytest to run specific 
+tests against a specific version of Python.
 
 ## API
 
