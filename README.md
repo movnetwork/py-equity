@@ -1,4 +1,4 @@
-# PY-EQUITY
+# py-equity
 
 [![Build Status](https://travis-ci.org/meherett/py-equity.svg?branch=master)](https://travis-ci.org/meherett/py-equity)
 ![PyPI License](https://img.shields.io/pypi/l/py-equity.svg?color=black)
